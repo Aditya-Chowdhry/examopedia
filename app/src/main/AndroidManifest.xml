@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="aditya.examopedia" >
+    package="com.example.examopedia" >
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Details"
+            android:label="@string/title_activity_details" >
+        </activity>
+        <activity
+            android:name=".Second"
+            android:label="@string/title_activity_second" >
+        </activity>
+        <activity
+            android:name=".Adding"
+            android:label="@string/title_activity_adding" >
         </activity>
     </application>
 
