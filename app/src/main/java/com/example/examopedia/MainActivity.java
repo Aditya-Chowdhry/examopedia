@@ -8,34 +8,76 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity  implements AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity {
     Database database;
-    long id;
-    ArrayList<String> ar=new ArrayList<>();
-    String[] days= {"Engineering","Medical"};
-    ListView primary;
+    ExpandableListView expandableListView;
+    ExpandableListAdapter expandableListAdapter;
+    HashMap<String,List<String>> childData;
+    List<String> parentData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         database=new Database(this);
-        /*id =database.adddata("Engineering","Jee mains","For addmision in IIT","1100","4-04-2016");
-        if (id>0)
-            Toast.makeText(this,"Added",Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this,"Not Added",Toast.LENGTH_SHORT).show();*/
+        expandableListView=(ExpandableListView)findViewById(R.id.expandableListView);
+        provideData();
+        expandableListAdapter=new ExpandableListAdapter(this,parentData,childData);
+        expandableListView.setAdapter(expandableListAdapter);
 
-///////////////////HEREREEEEEEEEEEEEEEEEEEEEEEE/////////////////
-        primary= (ListView) findViewById(R.id.lv);
-        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,days);
-        primary.setAdapter(adapter);
-        primary.setOnItemClickListener(this);
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                String nameOfExam=childData.get(parentData.get(groupPosition)).get(childPosition);
+                database.changecursorposition(nameOfExam);
+                String about = database.getAbout();
+                String date= database.getDate();
+                String fees = database.getFees();
+                Intent Intent = new Intent(MainActivity.this, Details.class);
+                Intent.putExtra("about",about);
+                Intent.putExtra("date",date);
+                Intent.putExtra("fees",fees);
+                startActivity(Intent);
+
+                return false;
+            }
+        });
+
     }
+
+
+
+    public void provideData(){
+        parentData=new ArrayList<>();
+        childData=new HashMap<>();
+
+
+        parentData.add("Engineering");
+        childData.put("Engineering",database.displaylist("Engineering"));
+
+        parentData.add("Medical");
+        childData.put("Medical", database.displaylist("Medical"));
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        provideData();
+        expandableListAdapter=new ExpandableListAdapter(this,parentData,childData);
+        expandableListView.setAdapter(expandableListAdapter);
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,12 +92,9 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -66,11 +105,6 @@ public class MainActivity extends AppCompatActivity  implements AdapterView.OnIt
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent i=new Intent(this,Second.class);
-        i.putExtra("category",position);
-        startActivity(i);
-    }
+
 
 }

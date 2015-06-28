@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
     Context context;
@@ -32,9 +33,9 @@ public class Database {
         id=sqLiteDatabase.insert(dbHelper.TABLENAME,null,cn);
         return id;
     }
-    public ArrayList displaylist(String category){
+    public List displaylist(String category){
         String currentcategory,exams;
-        ArrayList<String> ar=new ArrayList<>();
+        List<String> ar=new ArrayList<>();
 
         String[] columns={dbHelper.CATEGORY,dbHelper.EXAMS,dbHelper.ABOUT,dbHelper.FEES,dbHelper.DATE};
         SQLiteDatabase sqLiteDatabase=dbHelper.getWritableDatabase();

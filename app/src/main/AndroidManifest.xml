@@ -21,10 +21,6 @@
             android:label="@string/title_activity_details" >
         </activity>
         <activity
-            android:name=".Second"
-            android:label="@string/title_activity_second" >
-        </activity>
-        <activity
             android:name=".Adding"
             android:label="@string/title_activity_adding" >
         </activity>
