@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
@@ -15,4 +16,23 @@
         android:layout_marginLeft="30dp"
         android:textColor="#16A085"
         android:id="@+id/childText" />
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="25dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#16A085"
+        android:id="@+id/childText" />
+>>>>>>> 088acf3bf01838edeca098c33bc3a5a4c8e6a6ec
 </LinearLayout>

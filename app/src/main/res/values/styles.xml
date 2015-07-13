@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <resources>
 
     <!-- Base application theme. -->
@@ -9,3 +10,16 @@
     </style>
 
 </resources>
+=======
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
+</resources>
+>>>>>>> 088acf3bf01838edeca098c33bc3a5a4c8e6a6ec
