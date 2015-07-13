@@ -42,7 +42,6 @@ public class Adding extends AppCompatActivity {
                     Toast.makeText(Adding.this,"Not Added",Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
 

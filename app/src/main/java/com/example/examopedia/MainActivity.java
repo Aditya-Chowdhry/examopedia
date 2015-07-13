@@ -60,12 +60,17 @@ public class MainActivity extends AppCompatActivity {
         parentData=new ArrayList<>();
         childData=new HashMap<>();
 
+        parentData.add("Arts");
+        childData.put("Arts",database.displaylist("Arts"));
 
-        parentData.add("Engineering");
-        childData.put("Engineering",database.displaylist("Engineering"));
+        parentData.add("Commerce");
+        childData.put("Commerce", database.displaylist("Commerce"));
 
-        parentData.add("Medical");
-        childData.put("Medical", database.displaylist("Medical"));
+        parentData.add("Global");
+        childData.put("Global", database.displaylist("Global"));
+
+        parentData.add("Science");
+        childData.put("Science",database.displaylist("Science"));
 
     }
 

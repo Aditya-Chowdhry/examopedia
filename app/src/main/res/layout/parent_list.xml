@@ -6,10 +6,12 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="38dp"
+        android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="25dp"
+        android:textSize="25sp"
+        android:textColor="#16A085"
         android:text="Large Text"
+        android:typeface="monospace"
         android:id="@+id/parentText"
         android:layout_marginLeft="35dp"
         android:layout_weight="1.05" />

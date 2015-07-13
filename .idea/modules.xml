@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Examopedia.iml" filepath="$PROJECT_DIR$/Examopedia.iml" />
-      <module fileurl="file://$PROJECT_DIR$/New.iml" filepath="$PROJECT_DIR$/New.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examopedia.iml" filepath="$PROJECT_DIR$/examopedia.iml" />
     </modules>
   </component>
 </project>
