@@ -1,16 +1,7 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
         android:drawable="@drawable/notification_pressed" />
     <item android:state_pressed="false"
         android:drawable="@drawable/notification_normal" />
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true"
-        android:drawable="@drawable/notification_pressed" />
-    <item android:state_pressed="false"
-        android:drawable="@drawable/notification_normal" />
->>>>>>> 088acf3bf01838edeca098c33bc3a5a4c8e6a6ec
 </selector>

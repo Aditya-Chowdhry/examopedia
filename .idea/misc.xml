@@ -16,23 +16,4 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
-<<<<<<< HEAD
-=======
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>Android API 22, MNC preview Platform</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
-  </component>
->>>>>>> 088acf3bf01838edeca098c33bc3a5a4c8e6a6ec
 </project>
