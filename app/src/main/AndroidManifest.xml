@@ -2,16 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.examopedia" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait">
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/MainTheme">
+            android:theme="@style/MainTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,10 +26,10 @@
             android:label="@string/title_activity_details" >
         </activity>
         <activity
-            android:name=".Adding"
-            android:label="@string/title_activity_adding" >
+            android:name=".Demo"
+            android:label="@string/title_activity_demo" >
+
         </activity>
     </application>
 
 </manifest>
-

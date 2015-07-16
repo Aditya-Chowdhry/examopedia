@@ -10,7 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Database database;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
-    HashMap<String,List<String>> childData;
+    HashMap<String,List<String>> childData=null;
     List<String> parentData;
 
     @Override
@@ -29,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         database=new Database(this);
         expandableListView=(ExpandableListView)findViewById(R.id.expandableListView);
-        provideData();
+       provideData();
         expandableListAdapter=new ExpandableListAdapter(this,parentData,childData);
         expandableListView.setAdapter(expandableListAdapter);
 
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        /*expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 String nameOfExam=childData.get(parentData.get(groupPosition)).get(childPosition);
-                database.changecursorposition(nameOfExam);
+                //database.changecursorposition(nameOfExam);
                 String about = database.getAbout();
                 String date= database.getDate();
                 String fees = database.getFees();
@@ -50,62 +53,44 @@ public class MainActivity extends AppCompatActivity {
 
                 return false;
             }
-        });
+        });*/
+
 
     }
 
 
 
-    public void provideData(){
+   public void provideData(){
         parentData=new ArrayList<>();
         childData=new HashMap<>();
-
+       ArrayList<String> ar=new ArrayList<>();
+       ar.add("");
         parentData.add("Arts");
-        childData.put("Arts",database.displaylist("Arts"));
+        childData.put("Arts", ar);
 
         parentData.add("Engineering");
-        childData.put("Engineering",database.displaylist("Engineering"));
+       childData.put("Engineering", ar);
+        //childData.put("Engineering",database.displaylist("Engineering"));
 
-        parentData.add("Medical");
-        childData.put("Medical", database.displaylist("Medical"));
+       parentData.add("Medical");
+       childData.put("Medical", ar);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        provideData();
+       // provideData();
         expandableListAdapter=new ExpandableListAdapter(this,parentData,childData);
         expandableListView.setAdapter(expandableListAdapter);
     }
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void display(View view){
+        startActivity(new Intent(getApplicationContext(),Demo.class));
     }
 
-    public void adding(){
-        Intent adds=new Intent(this,Adding.class);
-        startActivity(adds);
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        if(id == R.id.add){
-            adding();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 
 
