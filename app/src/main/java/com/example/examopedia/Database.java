@@ -1,11 +1,14 @@
 package com.example.examopedia;
 
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,41 +29,54 @@ public class Database {
                            String link2,String link3_name,String link3,String link4_name,String link4,String created_at,String updated_at,String exam_review,String gen_fees_boys,
                             String gen_fees_girls,String sc_fees_boys,String sc_fees_girls,String others_note,String others)
     {
-       long result=0;
-        SQLiteDatabase sqLiteDatabase=dbHelper.getWritableDatabase();
-        ContentValues cn=new ContentValues();
-        cn.put(dbHelper.id,id);
-        cn.put(dbHelper.title,title);
-        cn.put(dbHelper.description,description);
-        cn.put(dbHelper.section,section);
-        cn.put(dbHelper.level,level);
-        cn.put(dbHelper.image_file_name,image_file_name);
-        cn.put(dbHelper.image_content_type,image_content_type);
-        cn.put(dbHelper.image_file_size,image_file_size);
-        cn.put(dbHelper.image_updated_at,image_updated_at);
-        cn.put(dbHelper.exam_date,exam_date);
-        cn.put(dbHelper.form_release_date,form_release_date);
-        cn.put(dbHelper.form_last_date,form_last_date);
-        cn.put(dbHelper.link1_name,link1_name);
-        cn.put(dbHelper.link1,link1);
-        cn.put(dbHelper.link2_name,link2_name);
-        cn.put(dbHelper.link2,link2);
-        cn.put(dbHelper.link3_name,link3_name);
-        cn.put(dbHelper.link3,link3);
-        cn.put(dbHelper.link4_name,link4_name);
-        cn.put(dbHelper.link4,link4);
-        cn.put(dbHelper.created_at,created_at);
-        cn.put(dbHelper.updated_at,updated_at);
-        cn.put(dbHelper.exam_review,exam_review);
-        cn.put(dbHelper.gen_fees_boys,gen_fees_boys);
-        cn.put(dbHelper.gen_fees_girls,gen_fees_girls);
-        cn.put(dbHelper.sc_fees_boys,sc_fees_boys);
-        cn.put(dbHelper.sc_fees_girls,sc_fees_girls);
-        cn.put(dbHelper.others_note,others_note);
-        cn.put(dbHelper.others,others);
+        Log.d("Database/addData", "Entered");
+        long result=0;
 
-        result=sqLiteDatabase.insert(dbHelper.TABLENAME,null,cn);
-        return result;
+         try (SQLiteDatabase sqLiteDatabase=dbHelper.getWritableDatabase()){
+
+             ContentValues cn=new ContentValues();
+
+             Log.d("Database/addData", "Writable Database initialised");
+             cn.put(dbHelper.id, id);
+             cn.put(dbHelper.title,title);
+             cn.put(dbHelper.description,description);
+             cn.put(dbHelper.section,section);
+             cn.put(dbHelper.level,level);
+             cn.put(dbHelper.image_file_name,image_file_name);
+             cn.put(dbHelper.image_content_type,image_content_type);
+             cn.put(dbHelper.image_file_size,image_file_size);
+             cn.put(dbHelper.image_updated_at,image_updated_at);
+             cn.put(dbHelper.exam_date,exam_date);
+             cn.put(dbHelper.form_release_date,form_release_date);
+             cn.put(dbHelper.form_last_date,form_last_date);
+             cn.put(dbHelper.link1_name,link1_name);
+             cn.put(dbHelper.link1,link1);
+             cn.put(dbHelper.link2_name,link2_name);
+             cn.put(dbHelper.link2,link2);
+             cn.put(dbHelper.link3_name,link3_name);
+             cn.put(dbHelper.link3,link3);
+             cn.put(dbHelper.link4_name,link4_name);
+             cn.put(dbHelper.link4,link4);
+             cn.put(dbHelper.created_at,created_at);
+             cn.put(dbHelper.updated_at,updated_at);
+             cn.put(dbHelper.exam_review,exam_review);
+             cn.put(dbHelper.gen_fees_boys,gen_fees_boys);
+             cn.put(dbHelper.gen_fees_girls,gen_fees_girls);
+             cn.put(dbHelper.sc_fees_boys,sc_fees_boys);
+             cn.put(dbHelper.sc_fees_girls,sc_fees_girls);
+             cn.put(dbHelper.others_note,others_note);
+             cn.put(dbHelper.others,others);
+
+             result=sqLiteDatabase.insert(dbHelper.TABLENAME,null,cn);
+
+             Log.d("Database/addData", "Result added");
+             return result;
+         }
+        catch (Exception e){
+            Log.d("Database/addData",e.getMessage());
+            return -1;
+        }
+
     }
 
 

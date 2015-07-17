@@ -58,7 +58,7 @@ public class Demo extends AppCompatActivity {
         try {
             url = new URL(urlstr);
         } catch (MalformedURLException e) {
-
+            Toast.makeText(getApplicationContext(), "URL Incorrect", Toast.LENGTH_LONG).show();
         }
         //Sending data to Download class for downloading
         downloaddata = new Download();
@@ -85,7 +85,7 @@ public class Demo extends AppCompatActivity {
                 connection.setDoInput(true);
                 connection.setRequestMethod("GET");
                 connection.connect();
-
+                Log.d("Demo.java", "Connection succeeded");
                 //GETTING THE DATA
                 inputStream = connection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -99,6 +99,7 @@ public class Demo extends AppCompatActivity {
 
                 Log.d("Data", builder.toString());
                 inputStream.close();
+                Log.d("demo", "connection closed");
 
                 //PARSING DATA AND STORING IT IN DATABASE
                 jsonParsing(builder.toString());
@@ -127,9 +128,12 @@ public class Demo extends AppCompatActivity {
         public void jsonParsing(String json) {
 
 
+            Log.d("Demo", "Parsing start");
             JSONArray jsonArray;
             try {
                 jsonArray = new JSONArray(json);
+
+                Log.d("Demo/JsonParsing", "Json array created");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject object = jsonArray.getJSONObject(i);
                     id = object.getInt("id");
@@ -162,9 +166,11 @@ public class Demo extends AppCompatActivity {
                     others_note = object.getString("others_note");
                     others = object.getString("others");
 
+                    Log.d("Demo/JsonParsing", "Strings initialised");
                     //Adding one row to database.
                     long result=database.addData(id,title,description,section,level,image_file_name,image_content_type,image_file_size,image_updated_at, exam_date,form_release_date,form_last_date,link1_name,link1,link2_name,
                                         link2,link3_name,link3,link4_name,link4,created_at,updated_at,exam_review,gen_fees_boys,gen_fees_girls,sc_fees_boys,sc_fees_girls,others_note,others);
+
                     if(result!=-1){
                         Log.d("My","Added "+i);
                     }
