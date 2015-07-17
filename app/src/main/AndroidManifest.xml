@@ -21,14 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".Details"
-            android:label="@string/title_activity_details" >
+            android:name=".ExamTitles"
+            android:label="@string/title_activity_exam_titles" >
         </activity>
         <activity
-            android:name=".Demo"
-            android:label="@string/title_activity_demo" >
-
+            android:name=".SwipeTab"
+            android:label="@string/title_activity_swipe_tab"
+            android:theme="@style/MainTheme">
         </activity>
     </application>
 

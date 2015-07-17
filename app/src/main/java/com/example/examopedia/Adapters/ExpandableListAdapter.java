@@ -1,4 +1,4 @@
-package com.example.examopedia;
+package com.example.examopedia.Adapters;
 
 
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import com.example.examopedia.R;
 
 import org.w3c.dom.Text;
 
