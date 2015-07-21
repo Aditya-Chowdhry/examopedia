@@ -1,7 +1,10 @@
 package com.example.examopedia;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> parentData;
     AsyncJSON asyncJSON;
     String etag="";
+    int count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +60,13 @@ public class MainActivity extends AppCompatActivity {
         database = new Database(this);
         database.resetdata();
 
-        getDataFromServer();
+        //Checking whether it is connected to internet or not .
+        if(connectivityInfo())
+            getDataFromServer();
+        else
+            Toast.makeText(this,"Please connect to Internet..",Toast.LENGTH_SHORT).show();
+
+
         asyncJSON = new AsyncJSON(this);
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         provideData();
@@ -82,6 +92,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Function for checking whether it is connected to internet or not.
+    private boolean connectivityInfo(){
+        boolean bool=false;
+        ConnectivityManager manager=(ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        try{
+            NetworkInfo info=manager.getActiveNetworkInfo();
+            bool=info.isConnected();
+        }
+        catch (NullPointerException e){
+            //It was throughing a NullPointerException and crash if not connected to internet.
+            //Working fine with this.
+        }
+
+
+        return bool;
+    }
 
     public void provideData() {
         parentData = new ArrayList<>();
@@ -115,7 +141,17 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Error " + error, Toast.LENGTH_SHORT).show();
+                        //Initially count will be zero so if any error occurs
+                        //It will make recursive calls provided count is less than five .
+                        //Else it will display the else part toast.
+                        if(count<5) {
+                            getDataFromServer();
+                            Toast.makeText(MainActivity.this, "Please Wait..", Toast.LENGTH_SHORT).show();
+                            count++;
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Please check your internet connection.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }) {
             //some linshttp://stackoverflow.com/questions/28696899/add-custom-headers-with-volley-library
