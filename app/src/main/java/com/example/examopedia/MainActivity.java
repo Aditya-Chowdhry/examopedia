@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,7 +22,6 @@ import com.example.examopedia.JSON.AsyncJSON;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -113,8 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+<<<<<<< HEAD
     int count =0;
 >>>>>>> 1e8c44e732c762476b7521248275c04c825219f4
+=======
+
+>>>>>>> parent of 1e8c44e... Added function for header
 
     public void getDataFromServer() {
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+<<<<<<< HEAD
 <<<<<<< HEAD
                         Toast.makeText(MainActivity.this, "Error " + error, Toast.LENGTH_SHORT).show();
                     }
@@ -150,27 +152,11 @@ public class MainActivity extends AppCompatActivity {
                             getDataFromServer();
                             count++;
                         }
+=======
+                        Toast.makeText(MainActivity.this,"Error "+error,Toast.LENGTH_SHORT).show();
+>>>>>>> parent of 1e8c44e... Added function for header
                     }
-                })
-            {
-                //For Header 
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String,String> map=new HashMap();
-                    map.put("If-None-Match",null);
-                    return map;
-                }
-
-                @Override
-                protected Response<String> parseNetworkResponse(NetworkResponse response) {
-
-                    String res=response.headers.get("If-None-Match");
-                    Toast.makeText(MainActivity.this,res,Toast.LENGTH_LONG).show();
-                    return super.parseNetworkResponse(response);
-                }
-            }
-        ;
+                });
         queue.add(stringRequest);
 >>>>>>> 1e8c44e732c762476b7521248275c04c825219f4
 
