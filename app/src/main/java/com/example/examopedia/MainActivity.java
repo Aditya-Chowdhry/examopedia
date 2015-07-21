@@ -97,24 +97,10 @@ public class MainActivity extends AppCompatActivity {
         parentData.add("Commerce");
         childData.put("Commerce", ar);
 
-<<<<<<< HEAD
         parentData.add("Science");
         childData.put("Science", ar);
     }
 
-=======
-       parentData.add("Commerce");
-       childData.put("Commerce", ar);
-
-       parentData.add("Science");
-       childData.put("Science", ar);
-   }
-
-
-
-
-    int count =0;
->>>>>>> 1e8c44e732c762476b7521248275c04c825219f4
 
     public void getDataFromServer() {
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
@@ -129,11 +115,10 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-<<<<<<< HEAD
                         Toast.makeText(MainActivity.this, "Error " + error, Toast.LENGTH_SHORT).show();
                     }
                 }) {
-//some linshttp://stackoverflow.com/questions/28696899/add-custom-headers-with-volley-library
+            //some linshttp://stackoverflow.com/questions/28696899/add-custom-headers-with-volley-library
             //
 // http://stackoverflow.com/questions/22948006/http-status-code-in-android-volley-when-error-networkresponse-is-null
 //http://stackoverflow.com/questions/22272348/volley-cache-using-etag?rq=1
@@ -144,35 +129,6 @@ public class MainActivity extends AppCompatActivity {
                 headers.put("If-None-Match", etag);
                 Log.d(TAG, "ETAG header in request value:" + etag);
                 return headers;
-=======
-                        if(count<5) {
-                            Toast.makeText(MainActivity.this, "Error in Downloading..\n Trying Again.", Toast.LENGTH_SHORT).show();
-                            getDataFromServer();
-                            count++;
-                        }
-                    }
-                })
-            {
-                //For Header 
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String,String> map=new HashMap();
-                    map.put("If-None-Match",null);
-                    return map;
-                }
-
-                @Override
-                protected Response<String> parseNetworkResponse(NetworkResponse response) {
-
-                    String res=response.headers.get("If-None-Match");
-                    Toast.makeText(MainActivity.this,res,Toast.LENGTH_LONG).show();
-                    return super.parseNetworkResponse(response);
-                }
-            }
-        ;
-        queue.add(stringRequest);
->>>>>>> 1e8c44e732c762476b7521248275c04c825219f4
 
             }
             @Override
