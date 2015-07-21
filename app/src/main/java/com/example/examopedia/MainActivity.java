@@ -111,12 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
     int count =0;
 >>>>>>> 1e8c44e732c762476b7521248275c04c825219f4
-=======
-
->>>>>>> parent of 1e8c44e... Added function for header
 =======
 
 >>>>>>> parent of 1e8c44e... Added function for header
@@ -134,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                         Toast.makeText(MainActivity.this, "Error " + error, Toast.LENGTH_SHORT).show();
@@ -171,12 +166,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Catching Header value"+response.headers.get("ETAG"));
                 etag = response.headers.get("ETAG");
                 int mStatusCode = response.statusCode;
-=======
-                        Toast.makeText(MainActivity.this,"Error "+error,Toast.LENGTH_SHORT).show();
-                    }
-                });
-        queue.add(stringRequest);
->>>>>>> parent of 1e8c44e... Added function for header
 
                 Log.d("Status Response", ":"+mStatusCode);
 
