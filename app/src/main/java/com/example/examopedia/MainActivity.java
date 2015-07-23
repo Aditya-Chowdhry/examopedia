@@ -1,5 +1,6 @@
 package com.example.examopedia;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -89,7 +91,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        SharedPreferences sp=getSharedPreferences("first_Startup",Context.MODE_PRIVATE);  //checking for first time run of the app
+        SharedPreferences.Editor editor=sp.edit();
+        if(sp.getBoolean("firstTime",true)){
+            userData();
+        }
+        editor.putBoolean("firstTime",false).commit();
     }
 
     //Function for checking whether it is connected to internet or not.
@@ -192,5 +199,8 @@ public class MainActivity extends AppCompatActivity {
         };
         queue.add(stringRequest);
         Log.d(TAG, "stringRequestadded in queue");
+    }
+    public void userData(){
+        startActivity(new Intent(MainActivity.this,UserDetails.class));
     }
 }

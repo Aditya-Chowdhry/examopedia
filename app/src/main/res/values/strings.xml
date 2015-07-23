@@ -12,4 +12,6 @@
     <string name="title_activity_demo">Demo</string>
     <string name="title_activity_exam_titles">ExamTitles</string>
     <string name="title_activity_swipe_tab">SwipeTab</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_user_details">UserDetails</string>
 </resources>

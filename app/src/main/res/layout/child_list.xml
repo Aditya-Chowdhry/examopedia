@@ -13,7 +13,7 @@
         android:layout_marginBottom="5dp"
         android:textSize="20sp"
         android:layout_marginLeft="30dp"
-        android:textColor="#16A085"
+        android:textColor="#E2413E"
         android:id="@+id/childText" />
 
 </LinearLayout>
