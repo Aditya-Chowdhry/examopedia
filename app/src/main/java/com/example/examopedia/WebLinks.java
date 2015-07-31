@@ -19,11 +19,11 @@ public class WebLinks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_links);
         Bundle extras=getIntent().getExtras();
-        String Link=extras.getString("link");
-        Toast.makeText(this,"link is "+Link,Toast.LENGTH_SHORT).show();
-        webView= (WebView) findViewById(R.id.webView);
-        webView.loadUrl(Link);
-        webView.setWebViewClient(new WebViewClient());
+        String link=extras.getString("link");
+        Toast.makeText(this,"link is "+link,Toast.LENGTH_SHORT).show();
+       webView= (WebView) findViewById(R.id.webView);
+       webView.loadUrl(link);
+       webView.setWebViewClient(new WebViewClient());
 
     }
 

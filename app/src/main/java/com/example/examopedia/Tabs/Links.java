@@ -8,6 +8,7 @@ import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,23 +29,47 @@ public class Links extends Fragment {
         linktwo=(TextView)v.findViewById(R.id.link_two);
         linkthree=(TextView)v.findViewById(R.id.link_three);
         linkfour=(TextView)v.findViewById(R.id.link_four);
-        linkone.setText("www.google.com");
-        linktwo.setText("www.google.com");
-       // linkthree.setText(Database.link3_name);
-        //linkfour.setText(Database.link4_name);
-        link_one.setOnClickListener(new View.OnClickListener() {
+        linkone.setText("https://www.google.co.in/");
+        linktwo.setText("https://www.google.co.in/");
+        linkthree.setText("https://www.google.co.in/");
+        linkfour.setText("https://www.google.co.in/");
+
+        linkone.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String tempLink="www.google.com";
-                Intent i=new Intent(Links.this.getActivity(),WebLinks.class);
-                i.putExtra("link",tempLink);
-                startActivity(i);
+            public void onClick(View v) {
+                start();
             }
         });
+        linktwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start();
+            }
+        });
+        linkthree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start();
+            }
+        });
+        linkfour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start();
+            }
+        });
+       // linkthree.setText(Database.link3_name);
+        //linkfour.setText(Database.link4_name);
+
 
         return v;
     }
-    public void openLink(View view){
 
+    private void start(){
+        Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG).show();
+        Intent intent=new Intent(getActivity(),WebLinks.class);
+        intent.putExtra("link","https://www.google.co.in/");
+        startActivity(intent);
     }
+
 }
