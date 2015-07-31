@@ -27,7 +27,7 @@ public class ExamTitles extends AppCompatActivity {
         listView=(ListView)findViewById(R.id.examTitleList);
         database=new Database(this);
         final ArrayList<String> arrayList=getIntent().getStringArrayListExtra("list");
-        adapter=new ArrayAdapter<String>(ExamTitles.this,android.R.layout.simple_list_item_1,arrayList);
+        adapter=new ArrayAdapter<String>(ExamTitles.this,R.layout.exam_list,R.id.textView9,arrayList);
         listView.setAdapter(adapter);
 
 

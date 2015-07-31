@@ -7,22 +7,70 @@
     android:orientation="vertical"
     tools:context="com.example.materialdesign.Tabs.TabOne">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="Link 1 :"
+        android:textSize="25dp"/>
+
     <TextView android:text="This is Tab One" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@android:color/holo_blue_light"
+        android:clickable="true"
         android:id="@+id/link_one"
         />
 
-    <TextView android:text="This is Tab One" android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/link_two"
-        />
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:text="Link 2 :"/>
+
 
     <TextView android:text="This is Tab One" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/link_three"
+        android:textSize="20dp"
+
+        android:clickable="true"
+        android:id="@+id/link_two"
+        android:textColor="@android:color/holo_blue_light"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:text="Link 3 :"/>
+
+
     <TextView android:text="This is Tab One" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
+
+        android:clickable="true"
+        android:textColor="@android:color/holo_blue_light"
+        android:id="@+id/link_three"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="Link 4 :"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView android:text="This is Tab One" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@android:color/holo_blue_light"
         android:id="@+id/link_four"
         />
 

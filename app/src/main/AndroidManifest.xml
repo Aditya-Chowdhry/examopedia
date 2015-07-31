@@ -38,7 +38,11 @@
         <activity
             android:name=".UserDetails"
             android:label="@string/title_activity_user_details"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".WebLinks"
+            android:label="@string/title_activity_web_links" >
         </activity>
     </application>
 

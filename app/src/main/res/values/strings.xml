@@ -14,4 +14,7 @@
     <string name="title_activity_swipe_tab">SwipeTab</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_user_details">UserDetails</string>
+    <string name="red_color">#E2413E</string>
+    <string name="title_activity_web_links">WebLinks</string>
 </resources>
+
