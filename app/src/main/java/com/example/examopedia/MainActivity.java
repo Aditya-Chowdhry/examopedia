@@ -26,6 +26,7 @@ import com.example.examopedia.Adapters.ExpandableListAdapter;
 import com.example.examopedia.JSON.AsyncJSON;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,8 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    File f;
     public static final String PREFS_NAME="etag";
     private static final String TAG ="MainActivity/Request";
     Database database;
@@ -91,12 +94,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sp=getSharedPreferences("first_Startup",Context.MODE_PRIVATE);  //checking for first time run of the app
+        SharedPreferences sp=getSharedPreferences("first_Startup",Context.MODE_PRIVATE);  //checking for first run of the app
         SharedPreferences.Editor editor=sp.edit();
         if(sp.getBoolean("firstTime",true)){
             userData();
         }
         editor.putBoolean("firstTime",false).commit();
+
     }
 
     //Function for checking whether it is connected to internet or not.
