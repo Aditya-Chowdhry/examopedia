@@ -1,17 +1,22 @@
 package com.example.examopedia;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,6 +40,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String PREFS_NAME2 ="register" ;
     File f;
     public static final String PREFS_NAME="etag";
     private static final String TAG ="MainActivity/Request";
@@ -46,11 +52,55 @@ public class MainActivity extends AppCompatActivity {
     AsyncJSON asyncJSON;
     String etag="";
     int count=0;
+    DialogBox dB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        database = new Database(this);
+
+        /*--------------------------------------User Form Area + First Request To server for data----------------------------------------*/
+
+        //Checking whether the its the first time for the form
+        SharedPreferences settings2=getSharedPreferences(PREFS_NAME2,Context.MODE_PRIVATE);
+        SharedPreferences.Editor userEditor=settings2.edit();
+        if(settings2.getBoolean(PREFS_NAME2, true)){
+
+            //DialogBox class is instantiated
+            dB=new DialogBox();
+            dB.setCancelable(false); //Used for disabling outside touch
+            dB.show(getFragmentManager(),"User Form");
+            //Dialog box ends
+
+
+
+                // To dismiss the dialog
+
+
+
+                // first Request
+                database.resetdata();
+
+                //Checking whether it is connected to internet or not .
+                if (connectivityInfo())
+                    getDataFromServer();
+                else
+                    Toast.makeText(this, "Please connect to Internet..", Toast.LENGTH_SHORT).show();
+
+
+                asyncJSON = new AsyncJSON(this);
+
+                //
+
+        }
+        userEditor.putBoolean(PREFS_NAME2, false);
+        userEditor.commit();
+
+        /*--------------------------------------End of User Form Area + First Request To server for data--------------------------*/
+
+
+        /*----------------------------------------Etag Caching-------------------------------*/
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);//http://developer.android.com/guide/topics/data/data-storage.html
         //This used for the purpose of stroing ETAG value
         //Whenever user press the refresh button
@@ -62,18 +112,22 @@ public class MainActivity extends AppCompatActivity {
 //        defValue	Value to return if this preference does not exist.
         etag=etagVal;
 
-        database = new Database(this);
-        database.resetdata();
-
-        //Checking whether it is connected to internet or not .
-        if(connectivityInfo())
-            getDataFromServer();
-        else
-            Toast.makeText(this,"Please connect to Internet..",Toast.LENGTH_SHORT).show();
+        /*----------------------------------------End of Etag Caching-------------------------------*/
 
 
-        asyncJSON = new AsyncJSON(this);
-        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+/*
+        SharedPreferences sp=getSharedPreferences("first_Startup",Context.MODE_PRIVATE);  //checking for first run of the app
+        SharedPreferences.Editor editor=sp.edit();
+        if(sp.getBoolean("firstTime",true)){
+            userData();
+        }
+        editor.putBoolean("firstTime",false).commit();
+*/
+
+
+        /*-----------------------------------Expandable List-----------------------------------------*/
+
+       expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         provideData();
         expandableListAdapter = new ExpandableListAdapter(this, parentData, childData);
         expandableListView.setAdapter(expandableListAdapter);
@@ -93,13 +147,9 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        /*-----------------------------------End of Expandable List-----------------------------------------*/
 
-        SharedPreferences sp=getSharedPreferences("first_Startup",Context.MODE_PRIVATE);  //checking for first run of the app
-        SharedPreferences.Editor editor=sp.edit();
-        if(sp.getBoolean("firstTime",true)){
-            userData();
-        }
-        editor.putBoolean("firstTime",false).commit();
+
 
     }
 

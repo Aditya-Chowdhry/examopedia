@@ -7,7 +7,19 @@
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
     </style>
-
-
+<!--We can customize AlertDialogCustom from here-->
+<!--
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="colorAccent">#FFC107</item>
+        <!- Used for the title and text ->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <!- Used for the background ->
+        <item name="android:background">#4CAF50</item>
+        <item name="android:windowTitleStyle">@style/MyTitleTextStyle</item>
+    </style>
+    <style name="MyTitleTextStyle">
+        <item name="android:textColor">#FFEB3B</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style> -->
 </resources>
 
