@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setView(R.layout.dialog_design);
 
+        dialog.setCancelable(false);
 
         dialog.setPositiveButton("Sure ?", new DialogInterface.OnClickListener() {
             @Override
@@ -218,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadingDialog(){
         progressDialog=new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Please Wait.While we load your exams!                           Make sure you have a working internet connection.");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
