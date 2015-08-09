@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.examopedia.Database;
+import com.example.examopedia.MainActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +68,10 @@ public class ParseJSON {
                         link2,link3_name,link3,link4_name,link4,created_at,updated_at,exam_review,gen_fees_boys,gen_fees_girls,sc_fees_boys,sc_fees_girls,others_note,others);
 
             }
+
+            //Hide the loading dialog
+            MainActivity.progressDialog.cancel();
+
         } catch (JSONException e) {
             Log.d("My", " " + e);
         }
