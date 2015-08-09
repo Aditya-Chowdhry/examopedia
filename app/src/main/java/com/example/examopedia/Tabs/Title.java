@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.examopedia.Database;
 import com.example.examopedia.R;
 
@@ -26,6 +27,7 @@ public class Title extends Fragment {
         View v=inflater.inflate(R.layout.title_xml,container,false);
         title=(TextView)v.findViewById(R.id.examName);
         desc=(TextView)v.findViewById(R.id.description);
+
 
 
         title.setText(Database.title);

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Exam Date :"
         android:textColor="@android:color/black"
-        android:textSize="25dp"/>
+        android:textSize="25sp"/>
 
 
     <TextView android:text="This is Tab One"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/examDate"
         android:textColor="@android:color/black"
-        android:textSize="20dp"/>
+        android:textSize="20sp"/>
 
 
     <TextView
@@ -29,14 +29,14 @@
         android:layout_marginTop="25dp"
         android:text="Form Release Date :"
         android:textColor="@android:color/black"
-        android:textSize="25dp"/>
+        android:textSize="25sp"/>
 
 
     <TextView android:text="This is Tab One" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/form_release"
         android:textColor="@android:color/black"
-        android:textSize="20dp"/>
+        android:textSize="20sp"/>
 
 
     <TextView
@@ -45,13 +45,13 @@
         android:layout_marginTop="25dp"
         android:textColor="@android:color/black"
         android:text="Last date for form filling :"
-        android:textSize="25dp"/>
+        android:textSize="25sp"/>
 
 
     <TextView android:text="This is Tab One" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/form_last"
         android:textColor="@android:color/black"
-        android:textSize="20dp"/>
+        android:textSize="20sp"/>
 
 </LinearLayout>

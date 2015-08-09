@@ -5,34 +5,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     tools:context="com.example.materialdesign.Tabs.TabOne">
 
 
-    <TextView android:text="Exam Title :" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/title_exam"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"/>
 
 
     <TextView android:text="This is Tab One" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/examName"
-        android:textSize="20dp"
-        android:textColor="@android:color/black"/>
+        android:fontFamily="Times New Roman"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#364B5F"/>
 
-    <TextView android:text="Exam Details :" android:layout_width="wrap_content"
+
+
+    <TextView android:text="About:" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/desc_exam"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:layout_marginTop="25dp"
-        android:textColor="@android:color/black"/>
+        android:textStyle="bold"
+        android:textColor="#364B5F"
+        />
 
 
     <TextView android:text="This is Tab One" android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/description"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:minLines="15"
         android:textColor="@android:color/black"/>
 

@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         /*--------------------------------------End of User Form Area + First Request To server for data--------------------------*/
 
 
-        /*----------------------------------------Etag Caching-------------------------------*/
+        /*----------------------------------------Etag Caching--------------------------------------------*/
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);//http://developer.android.com/guide/topics/data/data-storage.html
         //This used for the purpose of stroing ETAG value
         //Whenever user press the refresh button
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 //        defValue	Value to return if this preference does not exist.
         etag=etagVal;
 
-        /*----------------------------------------End of Etag Caching-------------------------------*/
+        /*----------------------------------------End of Etag Caching---------------------------------------*/
 
 
 /*
@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         /*-----------------------------------End of Expandable List-----------------------------------------*/
 
 
