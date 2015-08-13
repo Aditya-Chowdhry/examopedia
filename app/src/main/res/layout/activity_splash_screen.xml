@@ -1,11 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.examopedia.SplashScreen">
+    tools:context="com.example.examopedia.SplashScreen"
+    android:background="#e2413e">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/imageView2"
-        android:src="@drawable/frontpic"
-        android:scaleType="centerCrop"/>
+        android:src="@drawable/splash_screen"
+        android:layout_gravity="center_vertical"/>
 </LinearLayout>
