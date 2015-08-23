@@ -224,7 +224,23 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
     }
 
+    public void load_exam(View view){
+        if (connectivityInfo()) {
 
+            //Creating a loading dialog
+            loadingDialog();
+
+
+            //Initializing FetchAllData to send Volley String request
+            FetchAllData fetchAllData = new FetchAllData(MainActivity.this);
+
+            //sending request to server
+            fetchAllData.getDataFromServer();
+        } else
+            Toast.makeText(MainActivity.this, "Please connect to Internet..", Toast.LENGTH_SHORT).show();
+
+
+    }
 
 
 }
