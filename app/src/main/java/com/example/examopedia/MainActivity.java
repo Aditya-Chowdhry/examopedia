@@ -1,6 +1,8 @@
 package com.example.examopedia;
 
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,10 +34,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.examopedia.Adapters.ExpandableListAdapter;
 import com.example.examopedia.JSON.AsyncJSON;
+import com.example.examopedia.NotificationActivity.NotificationCentre;
+import com.example.examopedia.NotificationService.MyReceiver;
 
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, List<String>> childData = null;
     List<String> parentData;
 
+    PendingIntent pendingIntent;
+
     public static String etag="";
     public static ProgressDialog progressDialog;
 
@@ -65,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         name= (EditText) findViewById(R.id.editText8);
         database = new Database(this);
+
+        ///For the alarm manger///
+        Intent intent=new Intent(MainActivity.this, MyReceiver.class);
+        pendingIntent=PendingIntent.getBroadcast(this,0,intent,0);
+
+        startReciver();
+        //End of alarm manger//
+
+
 
         /*--------------------------------------User Form Area + First Request To server for data----------------------------------------*/
 
@@ -227,6 +243,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Alarm manager for starting a triggering a broadcast reciever in a regular interval which will start the service .
 
+    private void startReciver(){
+
+        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+        //Calendar calendar=Calendar.getInstance();
+        long time=System.currentTimeMillis();
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,time,30000,pendingIntent);
+    }
+
+    public void startNot(View view){
+        this.startActivity(new Intent(this, NotificationCentre.class));
+    }
 
 }
