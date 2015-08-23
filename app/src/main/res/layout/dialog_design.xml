@@ -10,21 +10,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="  Name"
+        android:layout_margin="5dp"
         android:ems="10"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/account"
         android:id="@+id/editText8" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editText9" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
+        android:hint="  Mobile number"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/phone"
+        android:id="@+id/editText9" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_margin="5dp"
+        android:hint="  Email ID"
+        android:drawableLeft="@drawable/email"
         android:id="@+id/editText10" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="  Details"
+        android:ems="10"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/plus"
+        android:id="@+id/editText11" />
 </LinearLayout>

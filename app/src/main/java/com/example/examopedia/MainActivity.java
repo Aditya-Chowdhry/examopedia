@@ -1,6 +1,8 @@
 package com.example.examopedia;
 
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -31,10 +34,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.examopedia.Adapters.ExpandableListAdapter;
 import com.example.examopedia.JSON.AsyncJSON;
+import com.example.examopedia.NotificationActivity.NotificationCentre;
+import com.example.examopedia.NotificationService.MyReceiver;
 
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,10 +53,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREFS_NAME="etag";
     public static final String TAG ="MainActivity/Request";
     Database database;
+    EditText name;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     HashMap<String, List<String>> childData = null;
     List<String> parentData;
+
+    PendingIntent pendingIntent;
 
     public static String etag="";
     public static ProgressDialog progressDialog;
@@ -61,8 +70,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        name= (EditText) findViewById(R.id.editText8);
         database = new Database(this);
+
+        ///For the alarm manger///
+        Intent intent=new Intent(MainActivity.this, MyReceiver.class);
+        pendingIntent=PendingIntent.getBroadcast(this,0,intent,0);
+
+        startReciver();
+        //End of alarm manger//
+
+
 
         /*--------------------------------------User Form Area + First Request To server for data----------------------------------------*/
 
@@ -185,10 +203,10 @@ public class MainActivity extends AppCompatActivity {
     public void userInfoDialog(){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setView(R.layout.dialog_design);
-
+        dialog.setTitle("User Details");
         dialog.setCancelable(false);
 
-        dialog.setPositiveButton("Sure ?", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -227,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
     public void load_exam(View view){
         if (connectivityInfo()) {
 
+<<<<<<< HEAD
             //Creating a loading dialog
             loadingDialog();
 
@@ -241,6 +260,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+=======
+    //Alarm manager for starting a triggering a broadcast reciever in a regular interval which will start the service .
 
+    private void startReciver(){
+>>>>>>> 6cdb4cb68daf9a9ca5c8b881ce463a06bfc33cd8
+
+        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+        //Calendar calendar=Calendar.getInstance();
+        long time=System.currentTimeMillis();
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,time,30000,pendingIntent);
+    }
+
+    public void startNot(View view){
+        this.startActivity(new Intent(this, NotificationCentre.class));
+    }
 
 }
