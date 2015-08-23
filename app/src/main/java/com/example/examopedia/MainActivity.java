@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREFS_NAME="etag";
     public static final String TAG ="MainActivity/Request";
     Database database;
+    EditText name;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     HashMap<String, List<String>> childData = null;
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        name= (EditText) findViewById(R.id.editText8);
         database = new Database(this);
 
         /*--------------------------------------User Form Area + First Request To server for data----------------------------------------*/
@@ -185,10 +187,10 @@ public class MainActivity extends AppCompatActivity {
     public void userInfoDialog(){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setView(R.layout.dialog_design);
-
+        dialog.setTitle("User Details");
         dialog.setCancelable(false);
 
-        dialog.setPositiveButton("Sure ?", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
