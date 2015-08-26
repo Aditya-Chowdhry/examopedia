@@ -19,6 +19,10 @@ import com.example.examopedia.NotificationActivity.NotificationCentre;
 import com.example.examopedia.R;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Created by dilpreet on 23/8/15.
@@ -28,6 +32,7 @@ public class GetNotifications {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     int size;
+    String list="";
 
     public GetNotifications(Context context) {
         super();
@@ -39,6 +44,7 @@ public class GetNotifications {
 
         //getting the initial size of the number of notifications
         getListSize();
+
 
 
         //starting asynctask
@@ -92,6 +98,13 @@ public class GetNotifications {
         try{
             array =new JSONArray(json);
             count=array.length();
+
+            JSONObject jsonObject;
+
+            for(int i=0;i<count;i++){
+                jsonObject=array.getJSONObject(i);
+                list=list+jsonObject.getString("title")+"\n";
+            }
             Log.d("mytag",count+"");
 
             //It means new notifications
@@ -114,10 +127,11 @@ public class GetNotifications {
         PendingIntent pi= PendingIntent.getActivity(context,0,in,0);
         NotificationManager manager=(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder notify=new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.notification_template_icon_bg)
-                .setContentTitle("Hello!!")
-                .setContentInfo( length + " new exams have been added")
+                .setSmallIcon(R.mipmap.logo)
+                .setContentTitle("New Exams are added")
+                .setContentInfo(length + " new exams have been added")
                 .setContentIntent(pi)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(list))
                 .setDefaults(Notification.DEFAULT_ALL);
         manager.notify(11,notify.build());
     }

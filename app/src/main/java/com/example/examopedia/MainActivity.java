@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     public static String etag="";
     public static ProgressDialog progressDialog;
 
+    SharedPreferences sharedPreferences;
+
 
 
     @Override
@@ -71,13 +73,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         name= (EditText) findViewById(R.id.editText8);
+        sharedPreferences=getSharedPreferences("alarm",MODE_PRIVATE);
         database = new Database(this);
 
         ///For the alarm manger///
+
+        int result=sharedPreferences.getInt("alarmKey",1);
+
         Intent intent=new Intent(MainActivity.this, MyReceiver.class);
         pendingIntent=PendingIntent.getBroadcast(this,0,intent,0);
 
-        startReciver();
+        if(result==1)
+            startReciver();
         //End of alarm manger//
 
 
@@ -250,11 +257,14 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
         //Calendar calendar=Calendar.getInstance();
         long time=System.currentTimeMillis();
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,time,30000,pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, time, 30000, pendingIntent);
     }
 
     public void startNot(View view){
         this.startActivity(new Intent(this, NotificationCentre.class));
     }
 
+    public void setting(View view){
+        startActivity(new Intent(this, Settings.class));
+    }
 }
