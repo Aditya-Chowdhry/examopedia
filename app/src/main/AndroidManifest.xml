@@ -61,6 +61,10 @@
             android:name=".NotificationActivity.NotificationCentre"
             android:label="@string/title_activity_notification_centre" >
         </activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
