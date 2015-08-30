@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, List<String>> childData = null;
     List<String> parentData;
 
-    PendingIntent pendingIntent;
+    public static PendingIntent pendingIntent;
+    public static AlarmManager alarmManager;
 
     public static String etag="";
     public static ProgressDialog progressDialog;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         database = new Database(this);
 
         ///For the alarm manger///
+
+        alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
 
         int result=sharedPreferences.getInt("alarmKey",1);
 
@@ -173,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             bool=info.isConnected();
         }
         catch (NullPointerException e){
-            //It was throughing a NullPointerException and crash if not connected to internet.
+            //It was throwing a NullPointerException and crash if not connected to internet.
             //Working fine with this.
         }
 
@@ -244,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadingDialog(){
         progressDialog=new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("Please Wait.While we load your exams!                           Make sure you have a working internet connection.");
+        progressDialog.setMessage("Please Wait.While we load your exams!\nMake sure you have a working internet connection.");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
@@ -252,16 +255,20 @@ public class MainActivity extends AppCompatActivity {
 
     //Alarm manager for starting a triggering a broadcast reciever in a regular interval which will start the service .
 
-    private void startReciver(){
+    public static void startReciver(){
 
-        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+
         //Calendar calendar=Calendar.getInstance();
         long time=System.currentTimeMillis();
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, time, 30000, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, time, 3000, pendingIntent);
     }
 
     public void startNot(View view){
         this.startActivity(new Intent(this, NotificationCentre.class));
+    }
+
+    public static void cancelAlarm(){
+        alarmManager.cancel(pendingIntent);
     }
 
     public void setting(View view){

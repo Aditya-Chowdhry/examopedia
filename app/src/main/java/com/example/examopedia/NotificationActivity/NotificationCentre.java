@@ -70,7 +70,7 @@ public class NotificationCentre extends AppCompatActivity {
         try{
             array =new JSONArray(json);
             JSONObject object;
-            for(int i=0;i<array.length();i++){
+            for(int i=array.length()-1;i>=0;i--){
                 object=array.getJSONObject(i);
                 Model newItem=new Model();
                 newItem.setTitle(object.getString("title"));
