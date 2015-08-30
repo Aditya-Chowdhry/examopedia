@@ -14,6 +14,7 @@ public class Settings extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
+
     Switch aSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,24 +22,32 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         aSwitch=(Switch)findViewById(R.id.switchOne);
 
-        sharedPreferences=getSharedPreferences("alarm",MODE_PRIVATE);
+        sharedPreferences=getSharedPreferences("alarm", MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
+        int getKey=sharedPreferences.getInt("alarmKey",1);
 
+        if(getKey==1)
+            aSwitch.setChecked(true);
+        else
+            aSwitch.setChecked(false);
 
-        aSwitch.setChecked(true);
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                int result=-1;
+                int result = -1;
 
-                if(isChecked)
-                    result=1;
+                if (isChecked)
+                {   MainActivity.startReciver();
+                    result = 1;
+                }
                 else
-                    result=0;
-                Log.d("Mytag",result+"");
-                editor.putInt("alarmKey",result);
+                {   MainActivity.cancelAlarm();
+                    result = 0;
+                }
+                Log.d("Mytag", result + "");
+                editor.putInt("alarmKey", result);
                 editor.commit();
             }
         });

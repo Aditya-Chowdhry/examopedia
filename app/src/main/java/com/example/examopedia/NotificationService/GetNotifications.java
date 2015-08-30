@@ -101,7 +101,7 @@ public class GetNotifications {
 
             JSONObject jsonObject;
 
-            for(int i=0;i<count;i++){
+            for(int i=size;i<count;i++){
                 jsonObject=array.getJSONObject(i);
                 list=list+jsonObject.getString("title")+"\n";
             }
@@ -111,7 +111,7 @@ public class GetNotifications {
             if(count>size){
                 clearList();
                 saveListSize(count);
-                displayNotification(count);
+                displayNotification(count-size);
 
             }
         }
