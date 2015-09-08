@@ -255,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
     public void load_exam(View view){
         if (connectivityInfo()) {
 
-<<<<<<< HEAD
             //Creating a loading dialog
             loadingDialog();
 
@@ -270,16 +269,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-=======
     //Alarm manager for starting a triggering a broadcast reciever in a regular interval which will start the service .
 
-<<<<<<< HEAD
-    private void startReciver(){
->>>>>>> 6cdb4cb68daf9a9ca5c8b881ce463a06bfc33cd8
-=======
     public static void startReciver(){
 
->>>>>>> 6d2cb160c669ebd01cd9196c713072f26f84eded
 
         //Calendar calendar=Calendar.getInstance();
         long time=System.currentTimeMillis();
