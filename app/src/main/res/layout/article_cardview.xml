@@ -11,24 +11,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/article_image"
+            android:src="@drawable/banner"/>
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/articleTitle"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/article_image"
             android:text="contact det"
             android:gravity="center_vertical"
-            android:textColor="@android:color/white"
-            android:textSize="14dp"/>
+            android:textSize="20sp"
+            />
 
         <TextView
             android:id="@+id/bodyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             android:text="Name"
             android:gravity="center_vertical"
             android:textSize="10dp"
-            android:layout_below="@id/title"
+            android:layout_below="@id/articleTitle"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"/>
 

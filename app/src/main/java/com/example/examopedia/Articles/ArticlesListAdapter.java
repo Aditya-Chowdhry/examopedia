@@ -26,7 +26,7 @@ public class ArticlesListAdapter extends RecyclerView.Adapter<ArticlesListAdapte
 
     @Override
     public ArticlesListAdapter.CardViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view, viewGroup, false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.article_cardview, viewGroup, false);
 
         return new CardViewHolder(itemView);
     }
@@ -53,7 +53,7 @@ public class ArticlesListAdapter extends RecyclerView.Adapter<ArticlesListAdapte
 
         public CardViewHolder(View itemView) {
             super(itemView);
-            vTitle=(TextView)itemView.findViewById(R.id.title);
+            vTitle=(TextView)itemView.findViewById(R.id.articleTitle);
             vAuthorName=(TextView)itemView.findViewById(R.id.authorName);
             vAuthorLink=(TextView)itemView.findViewById(R.id.authorLink);
             vBodyText=(TextView)itemView.findViewById(R.id.bodyText);
