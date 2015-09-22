@@ -1,49 +1,32 @@
 package com.example.examopedia;
 
 import android.app.AlarmManager;
-import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.examopedia.Adapters.ExpandableListAdapter;
-import com.example.examopedia.JSON.AsyncJSON;
+import com.example.examopedia.Articles.ArticlesActivity;
 import com.example.examopedia.NotificationActivity.NotificationCentre;
 import com.example.examopedia.NotificationService.MyReceiver;
 
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -251,6 +234,19 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
+
+
+
+    //
+    public void getFeed(View view){
+
+        this.startActivity(new Intent(this, ArticlesActivity.class));
+
+    }
+    //
+
+
+
 
     public void load_exam(View view){
         if (connectivityInfo()) {
