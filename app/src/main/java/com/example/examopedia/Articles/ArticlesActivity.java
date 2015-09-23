@@ -1,6 +1,7 @@
 package com.example.examopedia.Articles;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,12 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.examopedia.Settings;
 import com.example.examopedia.SingletonRequest;
 import com.example.examopedia.R;
 
@@ -75,7 +78,8 @@ public class ArticlesActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+//For testing purposes
+    /*
     private List<ArticleInfo> createList(int size) {
 
         List<ArticleInfo> result = new ArrayList<ArticleInfo>();
@@ -92,7 +96,7 @@ public class ArticlesActivity extends AppCompatActivity {
 
         return result;
     }
-
+*/
     private void getData(){
 
         RequestQueue queue = SingletonRequest.getInstance(this.getApplicationContext()).
@@ -135,7 +139,7 @@ public class ArticlesActivity extends AppCompatActivity {
                 newItem.setBodyText(object.getString("body"));
                 newItem.setAuthor_name(object.getString("author_name"));
                 newItem.setAuthor_link(object.getString("author_link"));
-
+                newItem.setId(object.getString("id"));
                 articleList.add(newItem);
 
             }
@@ -146,5 +150,12 @@ public class ArticlesActivity extends AppCompatActivity {
             Log.d("Article",e.toString());
         }
 
+    }
+
+    public void getFullArticle(View view) {
+        String id=(String)view.getTag();
+        Intent i=new Intent(this,FullArticle.class);
+        i.putExtra("id",id);
+        startActivity(i);
     }
 }

@@ -25,4 +25,13 @@ public class ArticleInfo {
     protected String author_name;
     protected String author_link;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    protected String id;
 }

@@ -30,10 +30,10 @@
         <TextView
             android:id="@+id/bodyText"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:text="Name"
             android:gravity="center_vertical"
-            android:textSize="10dp"
+            android:textSize="15dp"
             android:layout_below="@id/articleTitle"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"/>
@@ -42,11 +42,11 @@
             android:id="@+id/authorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Surname"
-            android:gravity="center_vertical"
+            android:text="Author Name"
+            android:gravity="left"
             android:textSize="10dp"
             android:layout_below="@id/bodyText"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             />
 
@@ -54,12 +54,22 @@
             android:id="@+id/authorLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="AuthorLink"
             android:textSize="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="150dp"
-            android:layout_alignBaseline="@id/authorName"/>
+            android:layout_toRightOf="@+id/authorName"
+            android:layout_below="@+id/bodyText"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/authorName"
+                android:text="More.."
+                android:id="@+id/fullArticle"
+                android:onClick="getFullArticle"/>
+
 
 
 
