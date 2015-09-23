@@ -4,17 +4,14 @@ import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.examopedia.Adapters.NotificationAdapter;
+import com.example.examopedia.SingletonRequest;
 import com.example.examopedia.R;
 
 import org.json.JSONArray;
@@ -46,7 +43,10 @@ public class NotificationCentre extends AppCompatActivity {
     }
 
     private void getData(){
-        RequestQueue queue= Volley.newRequestQueue(this);
+
+        RequestQueue queue = SingletonRequest.getInstance(this.getApplicationContext()).
+                getRequestQueue();
+
         String url="https://intense-brook-1791.herokuapp.com/notifications.json";
         StringRequest  request=new StringRequest(url,
                 new Response.Listener<String>() {
@@ -61,7 +61,7 @@ public class NotificationCentre extends AppCompatActivity {
                 Log.d("mytag", error.toString());
             }
         });
-        queue.add(request);
+        SingletonRequest.getInstance(this).addToRequestQueue(request);
     }
 
     private void parseJSON(String json){

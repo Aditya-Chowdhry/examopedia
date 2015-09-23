@@ -16,8 +16,8 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        new GetNotifications(this);
-        stopSelf();
+       new GetNotifications(this);
+       stopSelf();
         return START_STICKY;
     }
 

@@ -14,19 +14,20 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.examopedia.SingletonRequest;
 import com.example.examopedia.NotificationActivity.NotificationCentre;
 import com.example.examopedia.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 /**
  * Created by dilpreet on 23/8/15.
  */
+
+//Creating  a request queue eerytime will lead to memory exception. Therefore use a singleton class
+//http://stackoverflow.com/questions/24021411/volley-newrequestqueue-is-causing-outofmemoryerror
+
 public class GetNotifications {
     Context context;
     SharedPreferences preferences;
@@ -37,10 +38,10 @@ public class GetNotifications {
     public GetNotifications(Context context) {
         super();
         this.context=context;
-        preferences=context.getSharedPreferences("size",Context.MODE_PRIVATE);
+        preferences=context.getSharedPreferences("size", Context.MODE_PRIVATE);
         editor=preferences.edit();
 
-        //clearList();
+       // clearList();
 
         //getting the initial size of the number of notifications
         getListSize();
@@ -53,12 +54,16 @@ public class GetNotifications {
 
     //Class for Getting And processing the data
     private class GetData extends AsyncTask<Void,Void,Void>{
+
         @Override
         protected Void doInBackground(Void... params) {
-            RequestQueue queue= Volley.newRequestQueue(context);
+
+            RequestQueue queue = SingletonRequest.getInstance(context).
+                    getRequestQueue();
             String url="https://intense-brook-1791.herokuapp.com/notifications.json";
             StringRequest request=new StringRequest(url,
                     new Response.Listener<String>() {
+
                         @Override
                         public void onResponse(String response) {
                             parseJSON(response);
@@ -71,7 +76,8 @@ public class GetNotifications {
 
                         }
                     });
-            queue.add(request);
+           // request.setShouldCache(false);
+            SingletonRequest.getInstance(context).addToRequestQueue(request);
             return null;
         }
     }
