@@ -24,11 +24,11 @@ public class Database {
 
     //INSERTING DATA INTO DATABASE AFTER PARSING IT..
     public long addData( Integer id,String title,String description,String section,String level,String image_file_name,String image_content_type,String image_file_size,
-                          String image_updated_at, String exam_date,String form_release_date,String form_last_date,String link1_name,String link1,String link2_name,
-                           String link2,String link3_name,String link3,String link4_name,String link4,String created_at,String updated_at,String exam_review,String gen_fees_boys,
-                            String gen_fees_girls,String sc_fees_boys,String sc_fees_girls,String others_note,String others)
+                         String image_updated_at, String exam_date,String form_release_date,String form_last_date,String link1_name,String link1,String link2_name,
+                         String link2,String link3_name,String link3,String link4_name,String link4,String created_at,String updated_at,String exam_review,String gen_fees_boys,
+                         String gen_fees_girls,String sc_fees_boys,String sc_fees_girls,String others_note,String others)
     {
-       long result=0;
+        long result=0;
         SQLiteDatabase sqLiteDatabase=dbHelper.getWritableDatabase();
         ContentValues cn=new ContentValues();
         cn.put(dbHelper.id,id);
@@ -60,7 +60,7 @@ public class Database {
         cn.put(dbHelper.sc_fees_girls,sc_fees_girls);
         cn.put(dbHelper.others_note,others_note);
         cn.put(dbHelper.others,others);
-
+        cn.put(dbHelper.alarm,"0");
         result=sqLiteDatabase.insert(dbHelper.TABLENAME,null,cn);
         sqLiteDatabase.close();
         return result;
@@ -76,18 +76,18 @@ public class Database {
         List<String> ar=new ArrayList<>();
 
         String[] columns={dbHelper.id,dbHelper.title,dbHelper.description,dbHelper.section,dbHelper.level,dbHelper.image_file_name,dbHelper.image_content_type,
-                         dbHelper.image_file_size,dbHelper.image_updated_at,dbHelper.exam_date,dbHelper.form_release_date,dbHelper.form_last_date,dbHelper.link1_name,
-                           dbHelper.link1,dbHelper.link2_name,dbHelper.link2,dbHelper.link3_name,dbHelper.link3,dbHelper.link4_name,dbHelper.link4,dbHelper.created_at,
-                            dbHelper.updated_at,dbHelper.exam_review,dbHelper.gen_fees_boys,dbHelper.gen_fees_girls,dbHelper.sc_fees_boys,dbHelper.sc_fees_girls,dbHelper.others_note,dbHelper.others};
+                dbHelper.image_file_size,dbHelper.image_updated_at,dbHelper.exam_date,dbHelper.form_release_date,dbHelper.form_last_date,dbHelper.link1_name,
+                dbHelper.link1,dbHelper.link2_name,dbHelper.link2,dbHelper.link3_name,dbHelper.link3,dbHelper.link4_name,dbHelper.link4,dbHelper.created_at,
+                dbHelper.updated_at,dbHelper.exam_review,dbHelper.gen_fees_boys,dbHelper.gen_fees_girls,dbHelper.sc_fees_boys,dbHelper.sc_fees_girls,dbHelper.others_note,dbHelper.others};
 
         SQLiteDatabase sqLiteDatabase=dbHelper.getWritableDatabase();
         Cursor cursor=sqLiteDatabase.query(dbHelper.TABLENAME,columns,null,null,null,null,null);
 
         while(cursor.moveToNext()){
             //currentcategory=cursor.getString(cursor.getColumnIndex(dbHelper.CATEGORY));
-           // if(category.compareToIgnoreCase(currentcategory)==0){
-             //       exams=cursor.getString(cursor.getColumnIndex(dbHelper.EXAMS));
-               //     ar.add(exams);
+            // if(category.compareToIgnoreCase(currentcategory)==0){
+            //       exams=cursor.getString(cursor.getColumnIndex(dbHelper.EXAMS));
+            //     ar.add(exams);
             //}
             id=cursor.getInt(cursor.getColumnIndex(dbHelper.id));
             title=cursor.getString(cursor.getColumnIndex(dbHelper.title));
@@ -127,17 +127,17 @@ public class Database {
         return ar;
     }
 
-    public static String title,description, section,level,image_file_name,image_content_type,image_file_size,image_updated_at,exam_date;
+    public static String id,title,description, section,level,image_file_name,image_content_type,image_file_size,image_updated_at,exam_date;
     public static String form_release_date,form_last_date,link1_name,link1,link2_name,link2,link3_name,link3,link4_name,link4,created_at,updated_at;
-    public static String exam_review, gen_fees_boys,gen_fees_girls,sc_fees_boys,sc_fees_girls,others_note,others;
+    public static String exam_review, gen_fees_boys,gen_fees_girls,sc_fees_boys,sc_fees_girls,others_note,others,alarm;
 
     public void giveExamDetails(String exam){
 
         String currentexams;
-        String[] columns={dbHelper.title,dbHelper.description,dbHelper.section,dbHelper.level,dbHelper.image_file_name,dbHelper.image_content_type,
+        String[] columns={dbHelper.id,dbHelper.title,dbHelper.description,dbHelper.section,dbHelper.level,dbHelper.image_file_name,dbHelper.image_content_type,
                 dbHelper.image_file_size,dbHelper.image_updated_at,dbHelper.exam_date,dbHelper.form_release_date,dbHelper.form_last_date,dbHelper.link1_name,
                 dbHelper.link1,dbHelper.link2_name,dbHelper.link2,dbHelper.link3_name,dbHelper.link3,dbHelper.link4_name,dbHelper.link4,dbHelper.created_at,
-                dbHelper.updated_at,dbHelper.exam_review,dbHelper.gen_fees_boys,dbHelper.gen_fees_girls,dbHelper.sc_fees_boys,dbHelper.sc_fees_girls,dbHelper.others_note,dbHelper.others};
+                dbHelper.updated_at,dbHelper.exam_review,dbHelper.gen_fees_boys,dbHelper.gen_fees_girls,dbHelper.sc_fees_boys,dbHelper.sc_fees_girls,dbHelper.others_note,dbHelper.others,dbHelper.alarm};
 
         SQLiteDatabase sqLiteDatabase=dbHelper.getWritableDatabase();
         Cursor cursor=sqLiteDatabase.query(dbHelper.TABLENAME,columns,null,null,null,null,null);
@@ -151,7 +151,7 @@ public class Database {
             currentexams=cursor.getString(cursor.getColumnIndex(dbHelper.title));
 
             if(exam.compareToIgnoreCase(currentexams)==0){
-
+                id=cursor.getString(cursor.getColumnIndex(dbHelper.id));
                 title=cursor.getString(cursor.getColumnIndex(dbHelper.title));
                 description=cursor.getString(cursor.getColumnIndex(dbHelper.description));
                 section=cursor.getString(cursor.getColumnIndex(dbHelper.section));
@@ -180,7 +180,7 @@ public class Database {
                 sc_fees_girls=cursor.getString(cursor.getColumnIndex(dbHelper.sc_fees_girls));
                 others_note=cursor.getString(cursor.getColumnIndex(dbHelper.others_note));
                 others=cursor.getString(cursor.getColumnIndex(dbHelper.others));
-
+                alarm=cursor.getString(cursor.getColumnIndex(dbHelper.alarm));
 
                 break;
             }
@@ -211,6 +211,34 @@ public class Database {
         }
         sqLiteDatabase.close();
         return list;
+    }
+
+    public String getAlarm(String title){
+        String alarm="";
+        String[] columns={dbHelper.title,dbHelper.alarm};
+        SQLiteDatabase sql=dbHelper.getWritableDatabase();
+        Cursor cursor=sql.query(dbHelper.TABLENAME,columns,null,null,null,null,null);
+        while(cursor.moveToNext()){
+            if( title.compareToIgnoreCase(cursor.getString(cursor.getColumnIndex( dbHelper.title )) )==0){
+                alarm=cursor.getString(cursor.getColumnIndex( dbHelper.alarm));
+                break;
+            }
+        }
+
+        return alarm;
+    }
+    public long updateColumn(String exam){
+        SQLiteDatabase sql=dbHelper.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(dbHelper.alarm,1+"");
+        String selection="title=?";
+        String strargs[]={exam};
+
+        long id=sql.update(DbHelper.TABLENAME,contentValues,selection,strargs);
+        sql.close();
+        //String val=value+"";
+        //sql.execSQL("UPDATE "+DbHelper.TABLENAME+" SET alarm="+val+" WHERE title="+exam);
+        return id;
     }
 
     public void resetdata(){
@@ -258,17 +286,17 @@ public class Database {
         private static final String sc_fees_girls="sc_fees_girls";
         private static final String others_note="others_note";
         private static final String others="others";
-
-        private static final int DBVERSION=3;
+        private static final String alarm="alarm";
+        private static final int DBVERSION=4;
         private static final String CREATETABLE="CREATE TABLE "+TABLENAME+"("+id+" INTEGER ,"+title+" VARCHAR(256),"+description+" VARCHAR(256),"
-                                                +section+" VARCHAR(256),"+level+" VARCHAR(256),"+image_file_name+" VARCHAR(256),"
-                                                 +image_content_type+" VARCHAR(256),"+image_file_size+" VARCHAR(256),"+image_updated_at+" VARCHAR(256),"
-                                                  +exam_date+" VARCHAR(256),"+form_release_date+" VARCHAR(256),"+form_last_date+" VARCHAR(256),"
-                                                  +link1_name+" VARCHAR(256),"+link1+" VARCHAR(256),"+link2_name+" VARCHAR(256),"+link2+" VARCHAR(256),"
-                                                  +link3_name+" VARCHAR(256),"+link3+" VARCHAR(256),"+link4_name+" VARCHAR(256),"+link4+" VARCHAR(256),"
-                                                 +created_at+" VARCHAR(256),"+updated_at+" VARCHAR(256),"+exam_review+" VARCHAR(256),"+gen_fees_boys+
-                                                " VARCHAR(256),"+gen_fees_girls+" VARCHAR(256),"
-                +sc_fees_boys+" VARCHAR(256),"+sc_fees_girls+" VARCHAR(256),"+others_note+" VARCHAR(256),"+others+" VARCHAR(256));";
+                +section+" VARCHAR(256),"+level+" VARCHAR(256),"+image_file_name+" VARCHAR(256),"
+                +image_content_type+" VARCHAR(256),"+image_file_size+" VARCHAR(256),"+image_updated_at+" VARCHAR(256),"
+                +exam_date+" VARCHAR(256),"+form_release_date+" VARCHAR(256),"+form_last_date+" VARCHAR(256),"
+                +link1_name+" VARCHAR(256),"+link1+" VARCHAR(256),"+link2_name+" VARCHAR(256),"+link2+" VARCHAR(256),"
+                +link3_name+" VARCHAR(256),"+link3+" VARCHAR(256),"+link4_name+" VARCHAR(256),"+link4+" VARCHAR(256),"
+                +created_at+" VARCHAR(256),"+updated_at+" VARCHAR(256),"+exam_review+" VARCHAR(256),"+gen_fees_boys+
+                " VARCHAR(256),"+gen_fees_girls+" VARCHAR(256),"
+                +sc_fees_boys+" VARCHAR(256),"+sc_fees_girls+" VARCHAR(256),"+others_note+" VARCHAR(256),"+others+" VARCHAR(256),"+alarm+" VARCHAR(256));";
         private static final String DROPTABLE="DROP TABLE IF EXISTS "+TABLENAME;
         private Context conn;
         public DbHelper(Context context) {
@@ -286,7 +314,7 @@ public class Database {
 
             }
             catch(Exception e){
-
+                Log.d("mytag",e+"");
             }
 
         }

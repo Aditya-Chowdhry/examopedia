@@ -8,22 +8,36 @@
     android:orientation="vertical"
     tools:context="com.example.materialdesign.Tabs.TabOne">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Exam Date :"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"/>
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exam Date :"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"/>
 
 
-    <TextView android:text="This is Tab One"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/examDate"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"/>
-
-
+            <TextView android:text="This is Tab One"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/examDate"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:id="@+id/alarm_image"
+            android:src="@drawable/alarm_off"/>
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
