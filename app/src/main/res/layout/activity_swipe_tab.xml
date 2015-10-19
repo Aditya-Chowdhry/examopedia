@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.examopedia.SwipeTab">
+    tools:context="com.examopedia.beta.SwipeTab">
 
- <com.example.examopedia.SliderTab.SlidingTabLayout
+ <com.examopedia.beta.SliderTab.SlidingTabLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:id="@+id/tabs"
